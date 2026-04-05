@@ -20,7 +20,7 @@ If you want a quick starting point, begin with the storyboard workflows in the `
 
 1. Install this folder into `ComfyUI/custom_nodes/`.
 2. Restart ComfyUI.
-3. Run `install.bat` for the full setup, or `install_ltx23_motion_models.bat` if you only want the model downloads.
+3. Run `install.bat` (Windows) or `./install.sh` (Linux/macOS) for the full setup, or `install_ltx23_motion_models.bat` / `./install_ltx23_motion_models.sh` if you only want the model downloads.
 4. Open one of the shipped workflows from `workflows/`.
 5. Load your audio, source image, and optional storyboard images.
 6. Render a short test first, then run the full loop workflow.
@@ -40,8 +40,8 @@ For a setup checklist, see `docs/getting-started.md`.
 - `ltx_motion_audio_segments.py`: custom node implementations
 - `js/`: frontend extensions for dynamic storyboard and waveform nodes
 - `workflows/`: workflow JSON files
-- `install.bat`: Windows full installer for Python packages, ffmpeg, and models
-- `install_ltx23_motion_models.bat`: Windows model installer
+- `install.bat` / `install.sh`: Windows/Linux full installers for Python packages, ffmpeg, and models
+- `install_ltx23_motion_models.bat` / `install_ltx23_motion_models.sh`: Windows/Linux model installers
 - `merge_safetensors_shards.py`: safetensors merge helper
 - `LTX-2.3_Image_To_Video_Motion_Transfer.json`: motion-transfer base workflow
 
@@ -49,8 +49,8 @@ For a setup checklist, see `docs/getting-started.md`.
 
 1. Clone or copy this folder into `ComfyUI/custom_nodes/LTX2-3-motion`.
 2. Restart ComfyUI.
-3. Run `install.bat` if you want the full setup handled automatically, including Python packages, ffmpeg, and the required model downloads.
-4. Run `install_ltx23_motion_models.bat` only if your environment is already set up and you just need the model files.
+3. Run `install.bat` (or `./install.sh` on Linux) if you want the full setup handled automatically, including Python packages, ffmpeg, and the required model downloads.
+4. Run `install_ltx23_motion_models.bat` (or `./install_ltx23_motion_models.sh` on Linux) only if your environment is already set up and you just need the model files.
 5. Ensure `ffmpeg` is available if you plan to use segmented-audio or storyboard loop workflows.
 
 ## Required Models

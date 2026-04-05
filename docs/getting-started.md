@@ -2,9 +2,12 @@
 
 ## Install Location
 
-Place this repository inside:
+Place this repository inside your `ComfyUI/custom_nodes` folder. For example:
 
-`ComfyUI/custom_nodes/LTX2-3-motion`
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/GeekatplayStudio/LTX-2-3-LipSync LTX2-3-motion
+```
 
 Restart ComfyUI after copying or cloning the folder.
 
@@ -17,7 +20,7 @@ Make sure these files are available in your ComfyUI `models` folders:
 - `models/loras/ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors`
 - `models/text_encoders/gemma_3_12B_it_fp4_mixed.safetensors`
 
-If you prefer, run `install_ltx23_motion_models.bat` to place the files automatically.
+If you prefer, run `install_ltx23_motion_models.bat` (or `./install_ltx23_motion_models.sh` on Linux) to place the files automatically.
 
 ## System Requirements
 

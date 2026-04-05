@@ -43,6 +43,7 @@ call :ensure_dir "%DOWNLOAD_ROOT%"
 call :ensure_dir "%MODELS_ROOT%\checkpoints"
 call :ensure_dir "%MODELS_ROOT%\loras"
 call :ensure_dir "%MODELS_ROOT%\text_encoders"
+call :ensure_dir "%MODELS_ROOT%\upscale_models"
 
 set "SUPPORTED_GEMMA_FILE=%MODELS_ROOT%\text_encoders\gemma_3_12B_it_fp4_mixed.safetensors"
 set "GEMMA_COMFY_ALIAS=%MODELS_ROOT%\text_encoders\comfy_gemma_3_12B_it.safetensors"
@@ -67,10 +68,22 @@ echo.
 call :download_public "https://huggingface.co/Lightricks/LTX-2.3/resolve/main/ltx-2.3-22b-dev.safetensors?download=true" "%MODELS_ROOT%\checkpoints\ltx-2.3-22b-dev.safetensors"
 if errorlevel 1 exit /b 1
 
+call :download_public "https://huggingface.co/Lightricks/LTX-2.3-fp8/resolve/main/ltx-2.3-22b-dev-fp8.safetensors?download=true" "%MODELS_ROOT%\checkpoints\ltx-2.3-22b-dev-fp8.safetensors"
+if errorlevel 1 exit /b 1
+
+call :download_public "https://huggingface.co/Lightricks/LTX-2.3-fp8/resolve/main/ltx-2.3-22b-distilled-fp8.safetensors?download=true" "%MODELS_ROOT%\checkpoints\ltx-2.3-22b-distilled-fp8.safetensors"
+if errorlevel 1 exit /b 1
+
 call :download_public "https://huggingface.co/Lightricks/LTX-2.3/resolve/main/ltx-2.3-22b-distilled-lora-384.safetensors?download=true" "%MODELS_ROOT%\loras\ltx-2.3-22b-distilled-lora-384.safetensors"
 if errorlevel 1 exit /b 1
 
 call :download_public "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Motion-Track-Control/resolve/main/ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors?download=true" "%MODELS_ROOT%\loras\ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors"
+if errorlevel 1 exit /b 1
+
+call :download_public "https://huggingface.co/Comfy-Org/ltx-2/resolve/main/split_files/loras/gemma-3-12b-it-abliterated_lora_rank64_bf16.safetensors?download=true" "%MODELS_ROOT%\loras\gemma-3-12b-it-abliterated_lora_rank64_bf16.safetensors"
+if errorlevel 1 exit /b 1
+
+call :download_public "https://huggingface.co/Lightricks/LTX-2.3/resolve/main/ltx-2.3-spatial-upscaler-x2-1.0.safetensors?download=true" "%MODELS_ROOT%\upscale_models\ltx-2.3-spatial-upscaler-x2-1.0.safetensors"
 if errorlevel 1 exit /b 1
 
 if exist "%SUPPORTED_GEMMA_FILE%" (
@@ -156,8 +169,12 @@ set "VERIFY_FAILED=0"
 echo.
 echo Verifying required workflow model files...
 call :verify_exists "%MODELS_ROOT%\checkpoints\ltx-2.3-22b-dev.safetensors" "Checkpoint"
+call :verify_exists "%MODELS_ROOT%\checkpoints\ltx-2.3-22b-dev-fp8.safetensors" "Checkpoint FP8"
+call :verify_exists "%MODELS_ROOT%\checkpoints\ltx-2.3-22b-distilled-fp8.safetensors" "Distilled Checkpoint FP8"
 call :verify_exists "%MODELS_ROOT%\loras\ltx-2.3-22b-distilled-lora-384.safetensors" "Distilled LoRA"
 call :verify_exists "%MODELS_ROOT%\loras\ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors" "Motion Track IC-LoRA"
+call :verify_exists "%MODELS_ROOT%\loras\gemma-3-12b-it-abliterated_lora_rank64_bf16.safetensors" "Gemma Abliterated LoRA"
+call :verify_exists "%MODELS_ROOT%\upscale_models\ltx-2.3-spatial-upscaler-x2-1.0.safetensors" "LTX Spatial Upscaler"
 call :verify_exists "%SUPPORTED_GEMMA_FILE%" "Gemma text encoder"
 call :verify_exists "%GEMMA_COMFY_ALIAS%" "Gemma comfy alias"
 call :verify_exists "%GEMMA_LEGACY_ALIAS%" "Gemma legacy alias"
